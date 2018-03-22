@@ -89,4 +89,26 @@ public class UserDAO {
 		}
 		return false;
 	}
+	/**
+	 * 查找一个用户名是否存在
+	 * @param username
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean findTheUserName(String username) throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		DBConnectUtil dbc = new DBConnectUtil();
+		con = dbc.getCon();
+		String sql = "select * from user where username = ? ";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, username);
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }

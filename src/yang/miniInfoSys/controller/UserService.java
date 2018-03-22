@@ -48,4 +48,19 @@ public class UserService {
 		List<User> uList = uDAO.findAllUser();
 		return uList;
 	}
+	
+	/**
+	 * 查找用户名是否存在
+	 * @param username
+	 * @return
+	 * @throws Exception 
+	 */
+	public boolean findTheUserName(String username) throws Exception {
+		UserDAO uDAO = new UserDAO();
+		if(uDAO.findTheUserName(username)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }
